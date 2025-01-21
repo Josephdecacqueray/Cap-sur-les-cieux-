@@ -1,0 +1,75 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+}
+.background-image {
+    width: 100%;
+    height: 100%;
+    background-image: url('path/to/your/image.jpg');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+}
+.contact-bar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 66px;
+    background: linear-gradient(to bottom left, lightblue, navy);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+.contact-bar a {
+    color: white;
+    text-decoration: none;
+}
+.message {
+    display: none;
+    background-color: green;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: white;
+    position: absolute;
+    bottom: 80px;
+    right: 20px;
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to bottom left, navy, lightblue);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.square {
+    position: absolute;
+    bottom: 80px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+}
+.title {
+    font-family: 'Birds of Paradise', cursive;
+    font-size: 2em;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+}
+.article {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    background: white;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
