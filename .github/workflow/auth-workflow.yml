@@ -1,1 +1,23 @@
+name: Authentication Workflow
 
+on: [workflow_dispatch]
+
+jobs:
+  authenticate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Authenticate user
+      run: |
+        if [ "$USERNAME" == "${{ secrets.AUTH_USERNAME }}" ] && [ "$PASSWORD" == "${{ secrets.AUTH_PASSWORD }}" ]; then
+          echo "Authentication successful"
+        else
+          echo "Authentication failed"
+          exit 1
+        fi
+      env:
+        USERNAME: ${{ secrets.AUTH_USERNAME }}
+        PASSWORD: ${{ secrets.AUTH_PASSWORD }}
