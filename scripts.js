@@ -1,56 +1,85 @@
-async function hashPassword(password) {
-    const bcrypt = await import('https://cdnjs.cloudflare.com/ajax/libs/bcrypt.js/2.4.3/bcrypt.min.js');
-    const saltRounds = 10;
-    return bcrypt.hash(password, saltRounds);
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // Copier l'adresse email et afficher le message de confirmation
+    const emailElement = document.getElementById('email');
+    const copyConfirmation = document.getElementById('copy-confirmation');
 
-document.getElementById('contact-email').addEventListener('click', function(event) {
-    event.preventDefault();
-    const email = 'contact@example.com';
-    navigator.clipboard.writeText(email).then(function() {
-        document.getElementById('copy-message').style.display = 'block';
-        setTimeout(function() {
-            document.getElementById('copy-message').style.display = 'none';
-        }, 2000);
+    emailElement.addEventListener('click', () => {
+        navigator.clipboard.writeText(emailElement.textContent).then(() => {
+            copyConfirmation.style.display = 'inline-block';
+            setTimeout(() => {
+                copyConfirmation.style.display = 'none';
+            }, 2000);
+        });
     });
-});
 
-document.getElementById('login-square').addEventListener('click', function() {
-    document.getElementById('login-popup').style.display = 'block';
-});
+    // Afficher la fenêtre pop-up pour l'identification
+    const redSquare = document.getElementById('red-square');
+    const articleFormPopup = document.getElementById('article-form-popup');
 
-document.getElementById('login-button').addEventListener('click', async function() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const hashedPassword = await hashPassword(password);
+    redSquare.addEventListener('click', () => {
+        const username = prompt('Identifiant :');
+        const password = prompt('Mot de passe :');
 
-    const storedUsername = "admin";
-    const storedHashedPassword = await hashPassword("password");
+        // Vérifier les identifiants (à remplacer par une vérification sécurisée)
+        if (username === 'tonIdentifiant' && password === 'tonMotDePasse') {
+            articleFormPopup.style.display = 'block';
+        } else {
+            alert('Identifiants incorrects');
+        }
+    });
 
-    if (username === storedUsername && hashedPassword === storedHashedPassword) {
-        document.getElementById('login-popup').style.display = 'none';
-        document.getElementById('article-popup').style.display = 'block';
-    } else {
-        alert('Identifiant ou mot de passe incorrect');
-    }
-});
+    // Soumettre l'article
+    const articleForm = document.getElementById('article-form');
 
-document.getElementById('submit-article').addEventListener('click', function() {
-    const content = document.getElementById('article-content').value;
-    if (content) {
+    articleForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const title = document.getElementById('title').value;
+        const content = document.getElementById('content').value;
+
+        // Créer un nouvel article
         const article = document.createElement('div');
         article.className = 'article';
-        article.textContent = content;
-        document.getElementById('articles').appendChild(article);
-        document.getElementById('article-popup').style.display = 'none';
-        localStorage.setItem('articles', document.getElementById('articles').innerHTML);
-    } else {
-        alert('Veuillez écrire un article');
-    }
-});
+        article.innerHTML = `<h2>${title}</h2><p>${content}</p>`;
 
-window.onload = function() {
-    if (localStorage.getItem('articles')) {
-        document.getElementById('articles').innerHTML = localStorage.getItem('articles');
-    }
-};
+        // Ajouter l'article à la page
+        document.getElementById('articles').appendChild(article);
+
+        // Réinitialiser le formulaire et masquer la fenêtre pop-up
+        articleForm.reset();
+        articleFormPopup.style.display = 'none';
+
+        // Envoyer l'article à GitHub (à implémenter)
+        // fetch('https://api.github.com/repos/OWNER/REPO/issues', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Authorization': `token ${GITHUB_TOKEN}`,
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         title: title,
+        //         body: content
+        //     })
+        // }).then(response => response.json()).then(data => {
+        //     console.log('Article créé :', data);
+        // }).catch(error => {
+        //     console.error('Erreur :', error);
+        // });
+    });
+
+    // Charger les articles depuis GitHub (à implémenter)
+    // fetch('https://api.github.com/repos/OWNER/REPO/issues')
+    //     .then(response => response.json())
+    //     .then(issues => {
+    //         const articlesContainer = document.getElementById('articles');
+    //         issues.forEach(issue => {
+    //             const article = document.createElement('div');
+    //             article.className = 'article';
+    //             article.innerHTML = `<h2>${issue.title}</h2><p>${issue.body}</p>`;
+    //             articlesContainer.appendChild(article);
+    //         });
+    //     })
+    //     .catch(error => {
+    //         console.error('Erreur :', error);
+    //     });
+});
