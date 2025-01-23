@@ -1,75 +1,114 @@
+/* Style général */
 body, html {
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
     height: 100%;
-    font-family: 'Arial', sans-serif;
+    width: 100%;
 }
-.background-image {
+
+/* Image de fond */
+.background-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('path/to/your/image.jpg');
-    background-size: cover;
-    background-position: center;
-    position: absolute;
+    object-fit: cover;
+    z-index: -1;
 }
+
+/* Titre du site */
+.site-title {
+    font-family: 'Birds of Paradise', cursive;
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+    font-size: 3em;
+}
+
+/* Bande bleue avec dégradé */
 .contact-bar {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 66px;
     background: linear-gradient(to bottom left, lightblue, navy);
-    color: white;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-}
-.contact-bar a {
+    justify-content: center;
     color: white;
-    text-decoration: none;
+    font-size: 1.2em;
 }
-.message {
+
+.contact-text {
+    cursor: pointer;
+}
+
+.copy-confirmation {
     display: none;
     background-color: green;
-    border-radius: 5px;
-    padding: 5px 10px;
     color: white;
-    position: absolute;
-    bottom: 80px;
-    right: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-left: 10px;
 }
+
+/* Carré rouge */
+.red-square {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    cursor: pointer;
+}
+
+/* Fenêtre pop-up */
 .popup {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(to bottom left, navy, lightblue);
+    background-color: white;
     padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 10;
 }
-.square {
-    position: absolute;
-    bottom: 80px;
-    left: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: red;
+
+.popup form {
+    display: flex;
+    flex-direction: column;
 }
-.title {
-    font-family: 'Birds of Paradise', cursive;
-    font-size: 2em;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    color: white;
-}
-.article {
-    border: 1px solid #ccc;
-    border-radius: 10px;
+
+.popup input, .popup textarea {
+    margin-bottom: 10px;
     padding: 10px;
-    margin: 10px;
-    background: white;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.popup button {
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Articles */
+#articles {
+    margin: 20px;
+}
+
+.article {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
