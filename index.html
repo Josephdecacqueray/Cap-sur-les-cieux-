@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cap sur les Cieux !</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @font-face {
+            font-family: 'Birds of Paradise';
+            src: url('path/to/BirdsOfParadise.ttf') format('truetype');
+        }
+    </style>
+</head>
+<body>
+    <!-- Image de fond -->
+    <div class="background-image">
+        <img src="https://github.com/Josephdecacqueray/Cap-sur-les-cieux-/blob/main/Designer.png?raw=true" alt="Image de fond">
+    </div>
+
+    <!-- Titre du site -->
+    <h1 class="site-title">Cap sur les Cieux !</h1>
+
+    <!-- Bande bleue avec "nous contacter" -->
+    <div class="contact-bar">
+        <span class="contact-text">Nous contacter : <span id="email">contact@example.com</span></span>
+        <div id="copy-confirmation" class="copy-confirmation">Mail bien copié</div>
+    </div>
+
+    <!-- Carré rouge -->
+    <div class="red-square" id="red-square"></div>
+
+    <!-- Formulaire d'article -->
+    <div id="article-form-popup" class="popup">
+        <form id="article-form">
+            <input type="text" id="title" placeholder="Titre de l'article" required>
+            <textarea id="content" placeholder="Contenu de l'article" required></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+
+    <!-- Conteneur pour les articles -->
+    <div id="articles"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
