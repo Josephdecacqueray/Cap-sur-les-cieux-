@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const OWNER = 'Josephdecacqueray';
+    const REPO = 'Cap-sur-les-cieux-';
+    const GITHUB_TOKEN = 'ton_github_token';
+
     // Copier l'adresse email et afficher le message de confirmation
     const emailElement = document.getElementById('email');
     const copyConfirmation = document.getElementById('copy-confirmation');
@@ -20,13 +24,37 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = prompt('Identifiant :');
         const password = prompt('Mot de passe :');
 
-        // Vérifier les identifiants (à remplacer par une vérification sécurisée)
-        if (username === 'tonIdentifiant' && password === 'tonMotDePasse') {
-            articleFormPopup.style.display = 'block';
-        } else {
-            alert('Identifiants incorrects');
-        }
+        authenticateUser(username, password);
     });
+
+    function authenticateUser(username, password) {
+        fetch(`https://api.github.com/repos/${OWNER}/${REPO}/actions/workflows/auth-workflow.yml/dispatches`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ref: 'main',
+                inputs: {
+                    USERNAME: username,
+                    PASSWORD: password
+                }
+            })
+        }).then(response => {
+            if (response.ok) {
+                console.log('Authentication request sent');
+                // Afficher la fenêtre de soumission d'article si l'authentification réussit
+                articleFormPopup.style.display = 'block';
+            } else {
+                console.error('Authentication request failed');
+                alert('Identifiants incorrects');
+            }
+        }).catch(error => {
+            console.error('Error:', error);
+        });
+    }
 
     // Soumettre l'article
     const articleForm = document.getElementById('article-form');
