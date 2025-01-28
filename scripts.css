@@ -64,7 +64,7 @@ document.getElementById("article-form").addEventListener("submit", function(even
 
 // Fonction pour vérifier les identifiants via GitHub Issues
 async function authenticateUser(username, password) {
-    const response = await fetch(`https://api.github.com/repos/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/issues`, {
+    const response = await fetch(`https://api.github.com/repos/Josephdecacqueray/Cap-sur-les-cieux-/issues`, {
         headers: {
             "Authorization": `token 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`
         }
@@ -75,7 +75,7 @@ async function authenticateUser(username, password) {
 
 // Fonction pour soumettre un article à GitHub Issues
 async function submitArticle(title, content) {
-    await fetch(`https://api.github.com/repos/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/issues`, {
+    await fetch(`https://api.github.com/repos/Josephdecacqueray/Cap-sur-les-cieux-/issues`, {
         method: "POST",
         headers: {
             "Authorization": `token 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`,
@@ -95,3 +95,4 @@ function displayArticle(title, content) {
     article.className = "article";
     article.innerHTML = `<h2>${title}</h2><p>${content}</p>`;
     articlesSection.appendChild(article);
+}
