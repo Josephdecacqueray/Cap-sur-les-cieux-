@@ -34,6 +34,20 @@ function closeArticlePopup() {
     document.getElementById("article-popup").style.display = "none";
 }
 
+// Fonction pour afficher le message d'erreur
+function showError(message) {
+    const errorMessage = document.getElementById("error-message");
+    errorMessage.textContent = message;
+    errorMessage.style.display = "block";
+    setTimeout(() => {
+        errorMessage.style.opacity = 0;
+        setTimeout(() => {
+            errorMessage.style.display = "none";
+            errorMessage.style.opacity = 1;
+        }, 2000);
+    }, 2000);
+}
+
 // Gestion de la soumission du formulaire de connexion
 document.getElementById("login-form").addEventListener("submit", function(event) {
     event.preventDefault();
@@ -46,7 +60,7 @@ document.getElementById("login-form").addEventListener("submit", function(event)
             closeLoginPopup();
             openArticlePopup();
         } else {
-            alert("Identifiants incorrects");
+            showError("Identifiants incorrects");
         }
     });
 });
