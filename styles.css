@@ -120,3 +120,17 @@ body, html {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transform: perspective(1000px) rotateX(10deg);
 }
+
+.error-message {
+    display: none;
+    background-color: green;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 2s ease-out;
+}
