@@ -82,7 +82,7 @@ document.getElementById("article-form").addEventListener("submit", function(even
 async function authenticateUser(username, password) {
     const response = await fetch(`https://api.github.com/repos/Josephdecacqueray/Cap-sur-les-cieux-/issues`, {
         headers: {
-            "Authorization": `token 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`
+            "Authorization": `token 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`
         }
     });
     const issues = await response.json();
@@ -94,7 +94,7 @@ async function submitArticle(title, content) {
     await fetch(`https://api.github.com/repos/Josephdecacqueray/Cap-sur-les-cieux-/issues`, {
         method: "POST",
         headers: {
-            "Authorization": `token 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`,
+            "Authorization": `token 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`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
